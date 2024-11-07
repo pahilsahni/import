@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Textile Machines Import Export</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0, 20px, 0, 20px;
+            padding: 0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+
+header{
+    z-index: 10000000000;
+}
+
+        @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            list-style: none;
+            text-decoration: none;
+        }
+
+        nav {
+            background: #E1306c;
+            height: 80px;
+            width: 100%;
+            position: fixed;
+            z-index: 10000000000;
+        }
+
+        label.logo {
+            color: white;
+            font-size: 33px;
+            line-height: 80px;
+            padding: 0 140px;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        nav ul {
+            float: right;
+            margin-right: 60px;
+        }
+
+        nav ul li {
+            display: inline-block;
+            line-height: 80px;
+            margin: 0 2px;
+        }
+
+        nav ul li a {
+            color: white;
+            font-weight: 500;
+            font-size: 20px;
+            padding: 7px 13px;
+            border-radius: 3px;
+            /* text-transform: uppercase; */
+            font-family: 'Poppins', sans-serif;
+        }
+
+        nav ul li a:hover {
+            border-radius: 3px;
+            text-shadow: 0 0 10px gold,
+                0 0 20px gold,
+                0 0 30px gold,
+                0 0 40px orange,
+                0 0 60px orange,
+                0 0 100px red,
+                0 0 150px red;
+        }
+
+        a.active,
+        a:hover {
+            background: #1b9bff;
+            transition: .5s;
+        }
+
+        .checkbtn {
+            font-size: 30px;
+            color: white;
+            float: right;
+            line-height: 80px;
+            margin-right: 40px;
+            cursor: pointer;
+            display: none;
+        }
+
+        #check {
+            display: none;
+        }
+
+        @media (max-width: 952px) {
+            label.logo {
+                font-size: 27px;
+                padding-left: 25px;
+            }
+
+            nav ul li a {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 858px) {
+            .checkbtn {
+                display: block;
+                margin-right: 40px;
+            }
+
+            ul {
+                position: fixed;
+                width: 100%;
+                height: 100vh;
+                background: #262626;
+                top: 80px;
+                left: -100%;
+                text-align: center;
+                transition: all .5s;
+            }
+
+            nav ul li {
+                display: block;
+                margin: 50px 0;
+                line-height: 30px;
+            }
+
+            nav ul li a {
+                font-size: 20px;
+            }
+
+            a:hover,
+            a.active {
+                background: none;
+                color: white;
+            }
+
+            #check:checked~ul {
+                left: 0;
+            }
+        }
+
+
+
+
+
+
+
+        .container {
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .bar1,
+        .bar2,
+        .bar3 {
+            width: 35px;
+            height: 5px;
+            background-color: #333;
+            margin: 6px 0;
+            transition: 0.4s;
+        }
+
+        .change .bar1 {
+            transform: translate(0, 11px) rotate(-45deg);
+        }
+
+        .change .bar2 {
+            opacity: 0;
+        }
+
+        .change .bar3 {
+            transform: translate(0, -11px) rotate(45deg);
+        }
+
+        /* heder end */
+   
+main{
+    margin-left: 1.5rem;
+}
+        /* 1 */
+        .gfg {
+            position: relative;
+            width: 100%;
+            text-align: center;
+            z-index: -100;
+            padding-bottom: 1rem;
+        }
+
+
+        .text-container {
+            position: absolute;
+            color: rgb(255, 255, 255);
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.5rem;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        button{
+            background-color: yellowgreen;
+            padding: .5rem;
+            border-radius: .25rem;
+        }
+
+        /* 1 */
+
+        /* 2 */
+        #about {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            padding: .5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            padding-bottom: 1rem;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            max-width: 100%;
+            overflow: hidden;
+        }
+
+        .card-content {
+            padding: 20px;
+            flex: 1;
+        }
+
+        .card-content h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .card-content p {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .card-content ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .card-content ul li {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .card-content ul li::before {
+            content: "•";
+            color: #f0a500;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        .card-content .button {
+            background-color: #f0a500;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+            font-size: 16px;
+        }
+
+        .card-image {
+            flex: 1;
+            background-image: url('https://imagedelivery.net/xMnwd1aoy-PQ8Klk2JdGdw/d2d7e87e-7b77-4131-00fe-36b741f37b00/public');
+            /* Replace with actual image URL */
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* 2 */
+
+/* 3 */
+
+#products{
+    padding-bottom: 1rem;
+    z-index: -100;
+}
+
+.sliders{
+    min-height: 100%;
+    display: grid;
+    place-items: center;
+    z-index: -100;
+}
+
+.slide{
+    height: 250px;
+    margin: auto;
+    position: relative;
+    width: 90%;
+    display: grid;
+    place-items: center;
+    z-index: -100;
+}
+
+.slide{
+    height: 200px;
+    width: 250px;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    z-index: -100;
+}
+
+.slide-track{
+    display: flex;
+    /* width: calc(250px*18); */
+    animation: scroll 40s linear infinite;
+    z-index: -100;
+}
+
+img{
+    width: 100%;
+    padding-right: 10px;
+    z-index: -100;
+}
+
+@keyframes scroll{
+0% {
+    transform: translateX(0);
+}
+100% {
+    transform: translateX(calc(-250px*9));
+}
+}
+
+/* 3 */
+
+/* 1 */
+
+#format{
+    z-index: -100;
+}
+
+:root {
+    --red: hsl(0, 78%, 62%);
+    --cyan: hsl(180, 62%, 55%);
+    --orange: hsl(34, 97%, 64%);
+    --blue: hsl(212, 86%, 64%);
+    --varyDarkBlue: hsl(234, 12%, 34%);
+    --grayishBlue: hsl(229, 6%, 66%);
+    --veryLightGray: hsl(0, 0%, 98%);
+    --weight1: 200;
+    --weight2: 400;
+    --weight3: 600;
+}
+
+.attribution { 
+    font-size: 11px; text-align: center; 
+}
+.attribution a { 
+    color: hsl(228, 45%, 44%); 
+}
+
+h1:first-of-type {
+    font-weight: var(--weight1);
+    color: var(--varyDarkBlue);
+
+}
+
+h1:last-of-type {
+    color: var(--varyDarkBlue);
+}
+
+@media (max-width: 400px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+}
+
+.header {
+    text-align: center;
+    line-height: 0.8;
+    margin-bottom: 50px;
+    margin-top: 100px;
+}
+
+.header p {
+    margin: 0 auto;
+    line-height: 2;
+    color: var(--grayishBlue);
+}
+
+
+.box p {
+    color: var(--grayishBlue);
+}
+
+.box {
+    border-radius: 5px;
+    box-shadow: 0px 30px 40px -20px var(--grayishBlue);
+    padding: 30px;
+    margin: 20px;  
+}
+
+img {
+    float: right;
+}
+
+@media (max-width: 450px) {
+    .box {
+        height: 200px;
+    }
+}
+
+@media (max-width: 950px) and (min-width: 450px) {
+    .box {
+        text-align: center;
+        height: 180px;
+    }
+}
+
+.cyan {
+    border-top: 3px solid var(--cyan);
+}
+.red {
+    border-top: 3px solid var(--red);
+}
+.blue {
+    border-top: 3px solid var(--blue);
+}
+.orange {
+    border-top: 3px solid var(--orange);
+}
+
+h2 {
+    color: var(--varyDarkBlue);
+    font-weight: var(--weight3);
+}
+
+
+@media (min-width: 950px) {
+    .row1-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .row2-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .box-down {
+        position: relative;
+        top: 150px;
+    }
+    .box {
+        width: 20%;
+     
+    }
+    .header p {
+        width: 30%;
+    }
+    
+}
+
+/* 1 */
+
+        footer {
+            position: relative;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #111;
+            height: auto;
+            width: 100vw;
+            color: #fff;
+            padding: 20px;
+        }
+
+        footer p {
+            max-width: 500px;
+            margin-left: 50%;
+            font-size: 14px;
+            color: #cacdd2;
+        }
+
+        /* footer end /*
+
+
+
+
+
+        /* Form Styles */
+        #contact {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            padding-bottom: 1rem;
+            padding-top: 1rem;
+            margin: 0;
+        }
+        .contact-container {
+            display: flex;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            width: 800px;
+        }
+        .contact-info, .contact-form {
+            padding: 20px;
+            flex: 1;
+        }
+        .contact-info {
+            background-color: #f9f9f9;
+        }
+        .contact-info h2 {
+            margin-top: 0;
+        }
+        .contact-info p {
+            margin: 10px 0;
+        }
+        .contact-info a {
+            color: #d4af37;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .contact-form button {
+            background-color: #d4af37;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .contact-form button:hover {
+            background-color: #b38e2e;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <input type="checkbox" id="check">
+            <label for="check" class="checkbtn">
+
+                <div class="container" onclick="myFunction(this)">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                </div>
+
+            </label>
+            <label class="logo">OM TEX SPARES</label>
+            <ul>
+                <li><a class="active" href="#">Home</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#products">Product</a></li>
+            </ul>
+        </nav>
+
+
+
+        <script>
+            function myFunction(x) {
+                x.classList.toggle("change");
+            }
+        </script>
+    </header>
+
+        <section id="home">
+            <div class="gfg">
+                <img src="1 i.jpg"
+                    style="width: 100%; height: 60vh;">
+                <div class="text-container">
+                    <h3>TEXTILE MACHINERY & SPARE PARTS</h3>
+                    <p>Your one-stop solution for high-quality textile machinery and spare parts. Enhancing production efficiency for manufacturers and retailers.</p>
+                    <button>Contact-Us</button>
+                </div>
+        </section>
+
+        <section id="about">
+        <div class="card">
+            <div class="card-content">
+                <h1>WELCOME TO OM TEX SPARES</h1>
+                <p>With over 20 years of experience, OM TEX SPARES is a leading importer and dealer of textile machinery
+                    and spare parts. Our commitment to quality and customer satisfaction has made us a trusted partner
+                    in the textile industry.</p>
+                <ul>
+                    <li>Wide range of high-quality products</li>
+                    <li>Expert technical support</li>
+                    <li>Competitive pricing</li>
+                    <li>Fast and reliable delivery</li>
+                </ul>
+                <a href="#products" class="button">Our Products</a>
+            </div>
+            <div class="card-image"></div>
+        </div>
+        </section>
+
+        <main>
+
+        <section id="products">
+            <section class="sliders">
+                <div class="slider">
+                    <div class="slide-track">
+                        <div class="slide">
+                            <img src="9.jpg" alt="">
+                            <img src="8.jpg" alt="">
+                            <img src="7.jpg" alt="">
+                            <img src="6.jpg" alt="">
+                            <img src="5.jpg" alt="">
+                            <img src="4.jpg" alt="">
+                            <img src="3.jpg" alt="">
+                            <img src="2.jpg" alt="">
+                            <img src="1.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+                </section>
+        </section>
+
+        <section id="format">
+            <div class="row1-container">
+                <div class="box box-down cyan">
+                  <h2>Machine Installation</h2>
+                  <p>Expert installation of textile machinery</p>
+                  <img src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">
+                </div>
+            
+                <div class="box red">
+                  <h2>Spare Parts Supply</h2>
+                  <p>Wide range of high-quality spare parts</p>
+                  <img src="https://assets.codepen.io/2301174/icon-team-builder.svg" alt="">
+                </div>
+            
+                <div class="box box-down blue">
+                  <h2>Technical Support</h2>
+                  <p>24/7 technical assistance for our clients</p>
+                  <img src="https://assets.codepen.io/2301174/icon-calculator.svg" alt="">
+                </div>
+              </div>
+              <div class="row2-container">
+                <div class="box orange">
+                  <h2>Fast Delivery</h2>
+                  <p>Efficient logistics for quick delivery</p>
+                  <img src="https://assets.codepen.io/2301174/icon-karma.svg" alt="">
+                </div>
+              </div>
+        </section>
+
+        <section id="contact">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2>Get in Touch</h2>
+                    <p><i class="fas fa-map-marker-alt"></i>17, New Subzi Mandi, Near GVM School.
+                        PANIPAT-132103</p>
+                    <p><i class="fas fa-phone"></i>+91 82220 85999</p>
+                    <p><i class="fas fa-envelope"></i>omtexspares@gmail.com</p>
+                    <div>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form action="https://formspree.io/f/xkgnrqpe" method="POST">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <input type="text" name="phone" placeholder="Your Phone">
+                        <textarea name="message" placeholder="Your Message" required></textarea>
+                        <button type="submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+            <p>copyright &copy; </p>  
+    </footer>
+
+
+</body>
+
+</html>
